@@ -10,7 +10,15 @@ import (
 func main() {
 	DAO.Init()
 	r := gin.Default()
-	r.GET("/add", handler.AddTX)
-	r.GET("/list/all", handler.ListAll)
-	r.Run(":3000") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	r.POST("/add", handler.AddTXHandler)
+
+	r.GET("/list", handler.ListHandler)
+	r.GET("/list/balance", handler.ListBalanceHandler)
+
+	r.GET("/pay", handler.PayHelper)
+
+	r.POST("/delete", handler.ResetHandler)
+
+	r.Run(":3001") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
